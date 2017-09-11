@@ -10,6 +10,12 @@ int       action(int time, int value)
   dprintf(1, "%d", value);
 }
 
+int       hang()
+{
+  while(42)
+    sleep(300);
+}
+
 int       f(int log_fd)
 {
   FILE    *file;
@@ -25,11 +31,11 @@ int       f(int log_fd)
   else if (number < 0)
     action(1, 0);
   else if (number == 0)
-    while(42);
+    hang();
   else if (number < 5)
     action(1, 1);
   else
-    while(42);
+    hang();
 
   exit(EXIT_SUCCESS);
 }
@@ -47,11 +53,11 @@ int       g(int log_fd)
   else if (number < -5)
     action(1, 8);
   else if (number < 0)
-    while(42);
+    hang();
   else if (number == 0)
     action(1, 0);
   else if (number < 5)
-    while(42);
+    hang();
   else
     action(1, 2);
 
