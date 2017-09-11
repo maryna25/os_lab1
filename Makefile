@@ -82,22 +82,22 @@ fclean: 		clean
 re: 				fclean all
 
 test:				re
-						@(./$(NAME))
+						./$(NAME)
 
 test1:			fclean $(NAME_TEST1)
-						@(./$(NAME_TEST1))
+						./$(NAME_TEST1)
 
 test2:			fclean $(NAME_TEST2)
-						@(./$(NAME_TEST2))
+						./$(NAME_TEST2)
 
 test3:			fclean $(NAME_TEST3)
-						@(./$(NAME_TEST3))
+						./$(NAME_TEST3)
 
 test4:			fclean $(NAME_TEST4)
-						@(./$(NAME_TEST4))
+						./$(NAME_TEST4)
 
 test5:			fclean $(NAME_TEST5)
-						@(./$(NAME_TEST5))
+						./$(NAME_TEST5)
 
 test6:			fclean $(NAME_TEST6)
-						@(./$(NAME_TEST6))
+						./$(NAME_TEST6)

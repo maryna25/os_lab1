@@ -32,7 +32,9 @@ int       read_answer(manager_t *manager, int *queue, int i)
     queue[i] = 0;
     manager->functions[i]->answer = atoi(buffer);
     dprintf(manager->log_fd, "Function %d;Answer = %d\n", i, manager->functions[i]->answer);
+    dprintf(1, "Function %d;Answer = %d\n", i, manager->functions[i]->answer);
   }
+  return manager->functions[i]->answer;
 }
 
 int       user_answer(manager_t *manager)

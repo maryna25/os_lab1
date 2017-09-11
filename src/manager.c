@@ -10,17 +10,13 @@ int       reading_is_on(manager_t *manager, int *queue)
 
   finished_functions_count = 0;
   for (int i = 0; i < manager->number_of_functions; i++)
-  {
-    if (manager->functions[i]->answer == 0)
-      return -1;
     if (queue[i] == 0)
       finished_functions_count++;
-  }
 
   if (finished_functions_count == manager->number_of_functions)
-    return -1;
+    return 0;
 
-  return 0;
+  return 1;
 }
 
 int       polling_functions(manager_t *manager)
@@ -33,13 +29,14 @@ int       polling_functions(manager_t *manager)
   for (int i = 0; i < manager->number_of_functions; i++)
     queue[i] = manager->functions[i]->in;
 
-  while(reading_is_on(manager, queue) == 0)
+  while(42)
   {
     if (user_answer(manager))
        break;
     for(int i = 0; i < manager->number_of_functions; i++)
       if (queue[i] != 0)
-        read_answer(manager, queue, i);
+        if(read_answer(manager, queue, i) == 0 || !reading_is_on(manager, queue))
+          return 0;
   }
 }
 
@@ -80,5 +77,6 @@ int       start_manager(manager_t *manager)
   kill_functions(manager);
   res = compute(manager);
   dprintf(manager->log_fd, "Result = %d\n", res);
+  dprintf(1, "Result = %d\n", res);
   return 0;
 }
