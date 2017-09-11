@@ -30,6 +30,7 @@ int     fork_functions(manager_t *manager);
 int     kill_functions(manager_t *manager);
 
 int     set_nonblocking(int fd);
+char    getch();
 
 int     read_answer(manager_t *manager, int *queue, int i);
 int     user_answer(manager_t *manager);

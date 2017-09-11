@@ -50,7 +50,10 @@ int       fork_function(manager_t *manager, function_t *function)
     close(pipe_req[READ_SIDE]);
     close(pipe_ans[WRITE_SIDE]);
     if (manager->current_function == manager->number_of_functions - 1)
+    {
+      set_nonblocking(0);
       start_manager(manager);
+    }
     return(0);
   }
 }

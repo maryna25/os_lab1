@@ -2,7 +2,6 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include <string.h>
-#include <termios.h>
 #include "function.h"
 #include "manager.h"
 
@@ -36,20 +35,6 @@ int       read_answer(manager_t *manager, int *queue, int i)
     dprintf(1, "Function %d;Answer = %d\n", i, manager->functions[i]->answer);
   }
   return manager->functions[i]->answer;
-}
-
-int       getch()
-{
-  char    ch;
-  struct termios org_opts, new_opts;
-
-  tcgetattr(STDIN_FILENO, &org_opts);
-  memcpy(&new_opts, &org_opts, sizeof(new_opts));
-  new_opts.c_lflag &= ~(ICANON);
-  tcsetattr(STDIN_FILENO, TCSANOW, &new_opts);
-  ch = getchar();
-  tcsetattr(STDIN_FILENO, TCSANOW, &org_opts);
-  return ch;
 }
 
 int       user_answer(manager_t *manager)
