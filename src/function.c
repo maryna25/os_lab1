@@ -27,7 +27,7 @@ int       f(int log_fd)
   if(number < -10)
     action(1, 60);
   else if (number < -5)
-    action(4, 8);
+    action(7, 8);
   else if (number < 0)
     action(1, 0);
   else if (number == 0)

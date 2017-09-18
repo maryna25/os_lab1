@@ -8,6 +8,7 @@ int       init_manager(manager_t *manager)
   char    filename[32];
 
   manager->log_fd = create_log("manager.log");
+  manager->ask_stop_question = 1;
   manager->number_of_functions = 2;
   manager->x = 0;
   manager->stop_symbol = 's';

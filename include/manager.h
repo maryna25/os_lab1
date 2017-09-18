@@ -19,6 +19,7 @@ typedef struct  manager_s
   int           pipe_req[2];
   int           x;
   char          stop_symbol;
+  int           ask_stop_question;
 }               manager_t;
 
 int     create_log(char *filename);

@@ -20,14 +20,17 @@ int       reading_is_on(manager_t *manager, int *queue)
   return 1;
 }
 
-char        ask_user()
+char        ask_user(manager_t *manager)
 {
   char      answer;
 
-  printf("\nDo you want to continue?(y/n)");
+  printf("\nDo you want to continue or do not ask anymore?(y/n/d)");
   do
-    answer = getch();
-  while (answer != 'y' && answer != 'n');
+    answer = getchar();
+  while (answer != 'y' && answer != 'n' && answer != 'd');
+
+  if (answer == 'd')
+    manager->ask_stop_question = 0;
 
   return answer;
 }
@@ -54,15 +57,18 @@ int         polling_functions(manager_t *manager)
         if(read_answer(manager, queue, i) == 0 || !reading_is_on(manager, queue))
           return 0;
 
-    time2 = time(NULL);
-    if (time2 - time1 >= 5)
+    if (manager->ask_stop_question)
     {
-      if (ask_user() == 'n')
+      time2 = time(NULL);
+      if (time2 - time1 >= 1)
       {
-        dprintf(manager->log_fd, "System was stopped by user.\n");
-        return 0;
+        if (ask_user(manager) == 'n')
+        {
+          dprintf(manager->log_fd, "System was stopped by user.\n");
+          return 0;
+        }
+        time1 = time(NULL);
       }
-      time1 = time(NULL);
     }
   }
 }
