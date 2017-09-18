@@ -9,6 +9,7 @@ int       init_manager(manager_t *manager)
 
   manager->log_fd = create_log("manager.log");
   manager->ask_stop_question = 1;
+  manager->finished_functions_count = 0;
   manager->number_of_functions = 2;
   manager->x = 0;
   manager->stop_symbol = 's';

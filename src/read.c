@@ -32,7 +32,7 @@ int       read_answer(manager_t *manager, int *queue, int i)
     queue[i] = 0;
     manager->functions[i]->answer = atoi(buffer);
     dprintf(manager->log_fd, "Function %d;Answer = %d\n", i, manager->functions[i]->answer);
-    dprintf(1, "Function %d;Answer = %d\n", i, manager->functions[i]->answer);
+    //dprintf(1, "Function %d;Answer = %d\n", i, manager->functions[i]->answer);
   }
   return manager->functions[i]->answer;
 }
@@ -46,6 +46,7 @@ int       user_answer(manager_t *manager)
   if (answer == manager->stop_symbol)
   {
     dprintf(manager->log_fd, "System was stopped by user.\n");
+    dprintf(1, "System was stopped by user.\n");
     return 1;
   }
   return 0;

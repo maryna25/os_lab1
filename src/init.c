@@ -10,7 +10,8 @@ int       init_manager(manager_t *manager)
   char    buffer[16];
 
   manager->log_fd = create_log("manager.log");
-  manager->ask_stop_question = 1;
+  manager->ask_stop_question = 1; //1-ask, 0-don't ask anymore, 2-to stop
+  manager->finished_functions_count = 0;
 
   dprintf(0, "Enter number of functions: ");
   read(1, buffer, 15);

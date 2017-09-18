@@ -20,6 +20,7 @@ typedef struct  manager_s
   int           x;
   char          stop_symbol;
   int           ask_stop_question;
+  int           finished_functions_count;
 }               manager_t;
 
 int     create_log(char *filename);
